@@ -14,7 +14,6 @@
 <?import javafx.scene.control.TreeTableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -59,9 +58,9 @@
         </Menu>
       </menus>
     </MenuBar>
-    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0">
       <children>
-            <VBox layoutY="32.0" prefHeight="343.0" prefWidth="640.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="32.0">
+            <VBox layoutY="17.0">
                <children>
                   <HBox prefHeight="31.0" prefWidth="620.0" spacing="50.0">
                      <children>
@@ -84,29 +83,21 @@
                            </font>
                         </Label>
                         <ChoiceBox prefWidth="150.0" />
+                        <Button mnemonicParsing="false" text="Consulter absence" textFill="#1640a6" />
                      </children>
                      <padding>
                         <Insets left="15.0" />
                      </padding>
                   </HBox>
-                  <HBox>
-                     <children>
-                        <Region prefHeight="25.0" prefWidth="134.0" />
-                        <Button mnemonicParsing="false" text="Consulter absence" />
-                     </children>
-                     <VBox.margin>
-                        <Insets top="20.0" />
-                     </VBox.margin>
-                  </HBox>
-                  <Separator orientation="VERTICAL" prefHeight="47.0" prefWidth="640.0" />
+                  <Separator orientation="VERTICAL" prefHeight="30.0" prefWidth="640.0" />
                   <HBox prefHeight="183.0" prefWidth="640.0">
                      <children>
-                        <TreeTableView prefHeight="183.0" prefWidth="644.0">
+                        <TreeTableView editable="true" prefHeight="183.0" prefWidth="644.0" HBox.hgrow="ALWAYS">
                           <columns>
-                            <TreeTableColumn prefWidth="75.0" text="C1" />
-                            <TreeTableColumn prefWidth="75.0" text="C2" />
-                              <TreeTableColumn prefWidth="75.0" text="Column X" />
-                              <TreeTableColumn prefWidth="75.0" text="Column X" />
+                            <TreeTableColumn editable="false" prefWidth="75.0" text="Matiere" />
+                            <TreeTableColumn prefWidth="111.0" text="Date d'absence" />
+                              <TreeTableColumn prefWidth="83.0" text="enseignant" />
+                              <TreeTableColumn minWidth="1.0" prefWidth="31.0" text="Column X" />
                               <TreeTableColumn prefWidth="75.0" text="Column X" />
                           </columns>
                         </TreeTableView>

@@ -1,4 +1,4 @@
-package ing.entities;
+package ing.DAO;
 
 
 
@@ -8,6 +8,8 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+
+import ing.entities.Etudiant;
 
 
 
