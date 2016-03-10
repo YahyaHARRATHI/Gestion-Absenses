@@ -23,9 +23,9 @@ public class ImplEtudiantDAO implements IEtudiant {
 		session.beginTransaction();
 		
 		
-		Query q = session.createSQLQuery("select * from Annee");
+		Query q = session.createQuery("from Annee");
 		
-		System.out.println(q.list());
+		System.out.println(q.list().size());
 		
 		session.getTransaction().commit();
 		session.close();

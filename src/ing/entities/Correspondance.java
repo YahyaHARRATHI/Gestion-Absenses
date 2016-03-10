@@ -1,5 +1,5 @@
-package rev;
-// Generated 10 mars 2016 13:32:39 by Hibernate Tools 3.4.0.CR1
+package ing.entities;
+// Generated 10 mars 2016 14:50:16 by Hibernate Tools 3.4.0.CR1
 
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;

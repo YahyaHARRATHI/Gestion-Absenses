@@ -9,5 +9,12 @@
         <property name="hibernate.connection.username">root</property>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
         <property name="show_sql">true</property>
+        
+        <mapping class="ing.entities.Etudiant"/>
+         <mapping class="ing.entities.Annee"/>
+         <mapping class="ing.entities.Groupe"/>
+         <mapping class="ing.entities.Matiere"/>
+         <mapping class="ing.entities.Responsable"/>
+         <mapping class="ing.entities.Absence"/>
     </session-factory>
 </hibernate-configuration>
