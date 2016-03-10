@@ -19,7 +19,7 @@ import javax.persistence.OneToMany;
 @Entity
 public class Absence  {
 @Id
-@GeneratedValue(strategy=GenerationType.AUTO)
+@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id;
 	private Integer numeroSeance;
 	private Date date;

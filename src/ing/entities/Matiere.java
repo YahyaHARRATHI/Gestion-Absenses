@@ -16,7 +16,7 @@ import javax.persistence.Id;
 public class Matiere {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long idMat;
 	
 	private String nomMatiere;

@@ -32,7 +32,7 @@
                      <font>
                         <Font size="15.0" />
                      </font></Label>
-                  <TextField promptText="Identifiant unique" />
+                  <TextField fx:id="txtIdent" promptText="Identifiant unique" />
                </children>
                <padding>
                   <Insets left="10.0" right="10.0" top="10.0" />
