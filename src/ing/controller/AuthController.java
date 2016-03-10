@@ -9,7 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.PasswordField;
+import javafx.scene.control.Label;
 import javafx.scene.control.SplitMenuButton;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -17,8 +17,9 @@ import javafx.stage.Stage;
 public class AuthController {
 	@FXML private Button Conectbutton;
 	@FXML private TextField txtIdent;
-	@FXML private PasswordField passfield;
+	@FXML private TextField txtfield;
 	@FXML private SplitMenuButton profile;
+	 @FXML private Label lblerreur;
 	
 	
 	
@@ -28,17 +29,19 @@ public TextField getTxtIdent() {
 
 
 
-	public PasswordField getPassfield() {
-		return passfield;
+	public TextField getPassfield() {
+		return txtfield;
 	}
 
 
 
 public void connect(){
 	try {
-		System.out.println("kjgjkh");
+		System.out.println(txtfield.getText());
 		ImplEtudiantDAO e=new ImplEtudiantDAO();
-		e.connecter(txtIdent.getText(), "hg");
+		boolean test=e.connecter(txtIdent.getText(),txtfield.getText());
+		if(test==true)
+		{
 		Stage stage1=(Stage) Conectbutton.getScene().getWindow();
 		//System.out.println(passfield.);
 		stage1.close();
@@ -49,7 +52,13 @@ public void connect(){
 		stage.setScene(scene);
 		
 		stage.show();
-		
+		}
+		else {
+			
+			
+		Conectbutton.setText("khfjh");
+			
+		}
 	} catch (IOException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();

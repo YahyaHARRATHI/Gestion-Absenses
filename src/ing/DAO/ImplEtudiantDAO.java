@@ -23,13 +23,27 @@ public class ImplEtudiantDAO implements IEtudiant {
 		session.beginTransaction();
 		
 		
-		Query q = session.createQuery("from Annee");
+		Query q = session.createQuery(" from Etudiant e where e.login=:x and e.password=:y");
+		q.setParameter("x", login);
+		q.setParameter("y", password);
+		if(q.list().size()==0)
+		{
+			session.getTransaction().commit();
+			session.close();
+			
+			return false;
+		}
+		 
+		else{
+			session.getTransaction().commit();
+			session.close();
+			return true;
+		}
+				
 		
-		System.out.println(q.list().size());
 		
-		session.getTransaction().commit();
-		session.close();
-		return false;
+		
+		
 	}
 
 }
