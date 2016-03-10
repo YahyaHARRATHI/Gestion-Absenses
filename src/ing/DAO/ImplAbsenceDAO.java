@@ -21,18 +21,14 @@ public class ImplAbsenceDAO implements IAbsenceDAO {
 		return null;
 	}
 
-	/* (non-Javadoc)
-	 * @see ing.DAO.IAbsenceDAO#ajouterAbsence(ing.entities.Absence, java.lang.Long, java.lang.Long, java.lang.Long)
-	 */
+	
 	@Override
 	public boolean ajouterAbsence(Absence abs, Long idEns, Long idMat, Long idEtud) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
-	/* (non-Javadoc)
-	 * @see ing.DAO.IAbsenceDAO#annulerAbsence(java.lang.Long)
-	 */
+	
 	@Override
 	public boolean annulerAbsence(Long id) {
 		// TODO Auto-generated method stub

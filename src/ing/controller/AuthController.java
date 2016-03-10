@@ -10,6 +10,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
+import javafx.scene.control.SplitMenuButton;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -17,12 +18,29 @@ public class AuthController {
 	@FXML private Button Conectbutton;
 	@FXML private TextField txtIdent;
 	@FXML private PasswordField passfield;
+	@FXML private SplitMenuButton profile;
+	
+	
+	
+public TextField getTxtIdent() {
+		return txtIdent;
+	}
+
+
+
+	public PasswordField getPassfield() {
+		return passfield;
+	}
+
+
+
 public void connect(){
 	try {
+		System.out.println("kjgjkh");
 		ImplEtudiantDAO e=new ImplEtudiantDAO();
 		e.connecter(txtIdent.getText(), "hg");
 		Stage stage1=(Stage) Conectbutton.getScene().getWindow();
-		System.out.println(passfield.);
+		//System.out.println(passfield.);
 		stage1.close();
 		Parent root=FXMLLoader.load(getClass().getResource("/ing/view/AcuueilE.fxml"));
 		Scene scene = new Scene(root);

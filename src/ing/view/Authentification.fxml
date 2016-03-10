@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
@@ -47,7 +48,7 @@
                      <font>
                         <Font size="15.0" />
                      </font></Label>
-                  <PasswordField prefHeight="25.0" prefWidth="149.0" promptText="**********" />
+                  <PasswordField fx:id="passfield" prefHeight="25.0" prefWidth="149.0" promptText="**********" />
                </children>
                <VBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -55,6 +56,24 @@
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" />
                </padding>
+            </HBox>
+            <HBox spacing="70.0">
+               <children>
+                  <Label text="Profile" textFill="#e4560f">
+                     <HBox.margin>
+                        <Insets bottom="10.0" right="10.0" />
+                     </HBox.margin>
+                     <padding>
+                        <Insets left="20.0" right="50.0" />
+                     </padding>
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <ComboBox prefWidth="150.0">
+                    
+                  </ComboBox>
+               </children>
             </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>

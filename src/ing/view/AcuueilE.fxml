@@ -9,7 +9,6 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.SeparatorMenuItem?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.TreeTableColumn?>
 <?import javafx.scene.control.TreeTableView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -17,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1">
+<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ing.controller.ConsulterAbsence">
   <children>
     <MenuBar VBox.vgrow="NEVER">
       <menus>
@@ -62,19 +61,6 @@
       <children>
             <VBox layoutY="17.0">
                <children>
-                  <HBox prefHeight="31.0" prefWidth="620.0" spacing="50.0">
-                     <children>
-                        <Label text="CIN : ">
-                           <font>
-                              <Font size="13.0" />
-                           </font>
-                        </Label>
-                        <TextField />
-                     </children>
-                     <VBox.margin>
-                        <Insets bottom="5.0" left="15.0" right="5.0" top="5.0" />
-                     </VBox.margin>
-                  </HBox>
                   <HBox prefHeight="27.0" prefWidth="640.0" spacing="28.0">
                      <children>
                         <Label text="Matiere : ">
@@ -82,8 +68,8 @@
                               <Font size="13.0" />
                            </font>
                         </Label>
-                        <ChoiceBox prefWidth="150.0" />
-                        <Button mnemonicParsing="false" text="Consulter absence" textFill="#1640a6" />
+                        <ChoiceBox fx:id="matiere" prefWidth="150.0" />
+                        <Button fx:id="btnConsulter" mnemonicParsing="false" onAction="#ConsulterAbs" text="Consulter absence" textFill="#1640a6" />
                      </children>
                      <padding>
                         <Insets left="15.0" />
@@ -94,11 +80,11 @@
                      <children>
                         <TreeTableView editable="true" prefHeight="183.0" prefWidth="644.0" HBox.hgrow="ALWAYS">
                           <columns>
-                            <TreeTableColumn editable="false" prefWidth="75.0" text="Matiere" />
-                            <TreeTableColumn prefWidth="111.0" text="Date d'absence" />
+                            <TreeTableColumn editable="false" prefWidth="75.0" text="N° seance" />
+                            <TreeTableColumn prefWidth="111.0" text="Date " />
                               <TreeTableColumn prefWidth="83.0" text="enseignant" />
                               <TreeTableColumn minWidth="1.0" prefWidth="31.0" text="Column X" />
-                              <TreeTableColumn prefWidth="75.0" text="Column X" />
+                              <TreeTableColumn prefWidth="75.0" />
                           </columns>
                         </TreeTableView>
                      </children>
