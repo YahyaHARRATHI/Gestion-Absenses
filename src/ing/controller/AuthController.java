@@ -9,6 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.SplitMenuButton;
 import javafx.scene.control.TextField;
@@ -20,7 +21,8 @@ public class AuthController {
 	@FXML private TextField txtfield;
 	@FXML private SplitMenuButton profile;
 	 @FXML private Label lblerreur;
-	
+	 @FXML
+		private ComboBox<String> profileCombo;
 	
 	
 public TextField getTxtIdent() {
@@ -37,7 +39,9 @@ public TextField getTxtIdent() {
 
 public void connect(){
 	try {
-		System.out.println(txtfield.getText());
+		System.out.println(profileCombo.getValue());
+		
+		//if profileCombo.getValue() == Etudiant then search etudiant table
 		ImplEtudiantDAO e=new ImplEtudiantDAO();
 		boolean test=e.connecter(txtIdent.getText(),txtfield.getText());
 		if(test==true)
@@ -56,7 +60,7 @@ public void connect(){
 		else {
 			
 			
-		Conectbutton.setText("khfjh");
+		lblerreur.setText("khfjh");
 			
 		}
 	} catch (IOException e) {
