@@ -2,7 +2,9 @@ package ing.DAO;
 
 import java.util.List;
 
-import ing.entities.Absence;
+import ing.entity.Absence;
+
+
 
 public interface IAbsenceDAO {
 	

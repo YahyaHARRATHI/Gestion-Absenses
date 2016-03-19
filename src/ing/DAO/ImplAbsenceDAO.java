@@ -5,8 +5,9 @@ package ing.DAO;
 
 import java.util.List;
 
+import ing.entity.Absence;
 
-import ing.entities.Absence;
+
 
 /**
  * @author yaya
