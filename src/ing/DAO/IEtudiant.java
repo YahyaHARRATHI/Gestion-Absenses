@@ -2,6 +2,6 @@ package ing.DAO;
 
 public interface IEtudiant {
 	
-	public boolean connecter(String login,String password);
+	public Long connecter(String login,String password);
 
 }

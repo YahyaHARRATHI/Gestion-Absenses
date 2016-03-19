@@ -7,8 +7,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
-
-
+import ing.entity.Etudiant;
 import ing.util.HibernateUtil;
 
 public class ImplEtudiantDAO implements IEtudiant {
@@ -16,7 +15,7 @@ public class ImplEtudiantDAO implements IEtudiant {
 	
 	
 	@Override
-	public boolean connecter(String login, String password) {
+	public Long connecter(String login, String password) {
 		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 		 
 		Session session = sessionFactory.openSession();
@@ -31,13 +30,15 @@ public class ImplEtudiantDAO implements IEtudiant {
 			session.getTransaction().commit();
 			session.close();
 			
-			return false;
+			return null;
 		}
 		 
 		else{
+			Etudiant e=(Etudiant) q.list().get(0);
 			session.getTransaction().commit();
 			session.close();
-			return true;
+			
+			return e.getId() ;
 		}
 				
 		
