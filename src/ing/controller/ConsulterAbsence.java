@@ -33,16 +33,22 @@ public class ConsulterAbsence {
 		
 		String mat=matiere.getValue().toString();
 		Long id_mat=m.getIdMatiere(mat);
-		System.out.println(id_mat);
+		
 
 		
 		List<Absence> abs=a.listeAbsenceParMatiere(this.user_id, id_mat);
-		Iterator<Absence>  it=abs.iterator();
-		while (it.hasNext()) {
-			Absence temp = (Absence) it.next();
-			System.out.println(temp.getDate());
+		
+		for (Absence absence : abs) {
+			System.out.println("huh"+absence.getDate());
 			
 		}
+		//autre methode abs.iterator
+		/*while (it.hasNext()) {
+			Absence temp = (Absence) it.next();
+			System.out.println("hghg"+temp.getDate());
+			
+		}
+		*/
 	}
 }
 

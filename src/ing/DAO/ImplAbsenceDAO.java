@@ -35,16 +35,31 @@ public class ImplAbsenceDAO implements IAbsenceDAO {
 		
 		List<Absence> l=new ArrayList<Absence>();
 		
-		/*// sql code
+		/*// sql code 
 		 * SQLQuery q=session.createSQLQuery("select a.date from Absence a where a.id_etud=:x and a.id_mat=:y");
 		 
 		q.setParameter("x", idEtudiant);
 		q.setParameter("y", idMatiere);
 		*/
 		
-		
-		System.out.println(q.list());
-		
+		Criteria c=session.createCriteria(Absence.class);
+		c.createAlias("etudiant", "a");
+		c.createAlias("matiere", "m");
+		c.add(Restrictions.eq("a.id", idEtudiant));
+		c.add(Restrictions.eq("m.id", idMatiere));
+		for (Object o : c.list()) {
+			l.add((Absence) o);
+			
+		}
+		//autre methode
+		/*Iterator<Absence> it=c.list().iterator();
+		while (it.hasNext()) {
+			Absence absence = (Absence) it.next();
+			//System.out.println(absence.getDate());
+			l.add(absence);
+			
+		}
+		*/
 		session.getTransaction().commit();
 		session.close();
 		return l ;
