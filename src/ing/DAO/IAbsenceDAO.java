@@ -9,7 +9,7 @@ import ing.entity.Absence;
 public interface IAbsenceDAO {
 	
 	//pour l'étudiant et l'enseignat et le responsable
-	public List<Absence> listeAbsence(long idEtudiant);
+	public List<Absence> listeAbsenceParMatiere(Long idEtudiant,Long idMatiere);
 	//pour l'ensenignat
 	public boolean ajouterAbsence(Absence abs,Long idEns,Long idMat,Long idEtud);
 	//pour le responsable
