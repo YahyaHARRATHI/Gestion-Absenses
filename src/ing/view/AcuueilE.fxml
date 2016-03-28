@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <?import java.lang.String?>
 <?import javafx.collections.FXCollections?>
 <?import javafx.geometry.Insets?>
@@ -10,95 +11,123 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.SeparatorMenuItem?>
-<?import javafx.scene.control.TreeTableColumn?>
-<?import javafx.scene.control.TreeTableView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.control.cell.*?> 
+<?import javafx.collections.*?> 
+<?import fxmltableview.*?> 
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ing.controller.ConsulterAbsence">
-  <children>
-    <MenuBar VBox.vgrow="NEVER">
-      <menus>
-        <Menu mnemonicParsing="false" text="File">
-          <items>
-            <MenuItem mnemonicParsing="false" text="New" />
-            <MenuItem mnemonicParsing="false" text="Open…" />
-            <Menu mnemonicParsing="false" text="Open Recent" />
-            <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Close" />
-            <MenuItem mnemonicParsing="false" text="Save" />
-            <MenuItem mnemonicParsing="false" text="Save As…" />
-            <MenuItem mnemonicParsing="false" text="Revert" />
-            <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Preferences…" />
-            <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Quit" />
-          </items>
-        </Menu>
-        <Menu mnemonicParsing="false" text="Edit">
-          <items>
-            <MenuItem mnemonicParsing="false" text="Undo" />
-            <MenuItem mnemonicParsing="false" text="Redo" />
-            <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Cut" />
-            <MenuItem mnemonicParsing="false" text="Copy" />
-            <MenuItem mnemonicParsing="false" text="Paste" />
-            <MenuItem mnemonicParsing="false" text="Delete" />
-            <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Select All" />
-            <MenuItem mnemonicParsing="false" text="Unselect All" />
-          </items>
-        </Menu>
-        <Menu mnemonicParsing="false" text="Help">
-          <items>
-            <MenuItem mnemonicParsing="false" text="About MyHelloApp" />
-          </items>
-        </Menu>
-      </menus>
-    </MenuBar>
-    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0">
-      <children>
-            <VBox layoutY="17.0">
-               <children>
-                  <HBox prefHeight="27.0" prefWidth="640.0" spacing="28.0">
-                     <children>
-                        <Label text="Matiere : ">
-                           <font>
-                              <Font size="13.0" />
-                           </font>
-                        </Label>
-                        <ChoiceBox fx:id="matiere" prefWidth="150.0" >
-                          <items>
-                     <FXCollections fx:factory="observableArrayList">
-                          <String fx:value="Android"  />
-                     <String fx:value="Anglais" />
-                     <String fx:value="mathématique" />
-                        </FXCollections>
-                     </items>
-                        </ChoiceBox>
-                        <Button fx:id="btnConsulter" mnemonicParsing="false" onAction="#ConsulterAbs" text="Consulter absence" textFill="#1640a6" />
-                     </children>
-                     <padding>
-                        <Insets left="15.0" />
-                     </padding>
-                  </HBox>
-                  <Separator orientation="VERTICAL" prefHeight="30.0" prefWidth="640.0" />
-                  <HBox prefHeight="183.0" prefWidth="640.0">
-                     <children>
-                        <TreeTableView editable="true" prefHeight="183.0" prefWidth="644.0" HBox.hgrow="ALWAYS">
-                          <columns>
-                            <TreeTableColumn editable="false" prefWidth="75.0" text="N° seance" />
-                            <TreeTableColumn prefWidth="111.0" text="Date " />
-                              <TreeTableColumn prefWidth="75.0" />
-                          </columns>
-                        </TreeTableView>
-                     </children>
-                  </HBox>
-               </children>
-            </VBox>
-      </children>
-    </AnchorPane>
-  </children>
+<VBox prefHeight="531.0" prefWidth="694.0"
+	xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1"
+	fx:controller="ing.controller.ConsulterAbsence">
+	<children>
+		<MenuBar prefHeight="22.0" prefWidth="640.0" VBox.vgrow="ALWAYS">
+			<menus>
+				<Menu mnemonicParsing="false" text="File">
+					<items>
+						<MenuItem mnemonicParsing="false" text="New" />
+						<MenuItem mnemonicParsing="false" text="Open…" />
+						<Menu mnemonicParsing="false" text="Open Recent" />
+						<SeparatorMenuItem mnemonicParsing="false" />
+						<MenuItem mnemonicParsing="false" text="Close" />
+						<MenuItem mnemonicParsing="false" text="Save" />
+						<MenuItem mnemonicParsing="false" text="Save As…" />
+						<MenuItem mnemonicParsing="false" text="Revert" />
+						<SeparatorMenuItem mnemonicParsing="false" />
+						<MenuItem mnemonicParsing="false" text="Preferences…" />
+						<SeparatorMenuItem mnemonicParsing="false" />
+						<MenuItem mnemonicParsing="false" text="Quit" />
+					</items>
+				</Menu>
+				<Menu mnemonicParsing="false" text="Edit">
+					<items>
+						<MenuItem mnemonicParsing="false" text="Undo" />
+						<MenuItem mnemonicParsing="false" text="Redo" />
+						<SeparatorMenuItem mnemonicParsing="false" />
+						<MenuItem mnemonicParsing="false" text="Cut" />
+						<MenuItem mnemonicParsing="false" text="Copy" />
+						<MenuItem mnemonicParsing="false" text="Paste" />
+						<MenuItem mnemonicParsing="false" text="Delete" />
+						<SeparatorMenuItem mnemonicParsing="false" />
+						<MenuItem mnemonicParsing="false" text="Select All" />
+						<MenuItem mnemonicParsing="false" text="Unselect All" />
+					</items>
+				</Menu>
+				<Menu mnemonicParsing="false" text="Help">
+					<items>
+						<MenuItem mnemonicParsing="false" text="About MyHelloApp" />
+					</items>
+				</Menu>
+			</menus>
+		</MenuBar>
+		<AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0"
+			prefWidth="-1.0" VBox.vgrow="ALWAYS">
+			<children>
+				<VBox layoutY="17.0">
+					<children>
+						<HBox prefHeight="27.0" prefWidth="640.0" spacing="28.0"
+							VBox.vgrow="ALWAYS">
+							<children>
+								<Label text="Matiere : ">
+									<font>
+										<Font size="13.0" />
+									</font>
+								</Label>
+								<ChoiceBox fx:id="matiere" prefWidth="150.0">
+									<items>
+										<FXCollections fx:factory="observableArrayList">
+											<String fx:value="Android" />
+											<String fx:value="Anglais" />
+											<String fx:value="mathématique" />
+										</FXCollections>
+									</items>
+								</ChoiceBox>
+								<Button fx:id="btnConsulter" mnemonicParsing="false"
+									onAction="#ConsulterAbs" text="Consulter absence" textFill="#1640a6" />
+							</children>
+							<padding>
+								<Insets left="15.0" />
+							</padding>
+							<opaqueInsets>
+								<Insets />
+							</opaqueInsets>
+							<VBox.margin>
+								<Insets />
+							</VBox.margin>
+						</HBox>
+						<Separator orientation="VERTICAL" prefHeight="30.0"
+							prefWidth="640.0" />
+						<HBox>
+							<children>
+								<TableView fx:id="tableabs" prefHeight="200.0"
+									prefWidth="401.0">
+									<columns>
+										<TableColumn fx:id="num" prefWidth="63.0" text="Numero">
+											<cellValueFactory>
+												<PropertyValueFactory property="num" />
+											</cellValueFactory>
+										</TableColumn>
+										<TableColumn fx:id="date" minWidth="0.0"
+											prefWidth="236.0" text="Date" >
+											<cellValueFactory>
+												<PropertyValueFactory property="date" />
+											</cellValueFactory>
+										</TableColumn>
+									</columns>
+
+									<padding>
+										<Insets left="100.0" />
+									</padding>
+								</TableView>
+							</children>
+						</HBox>
+					</children>
+				</VBox>
+			</children>
+		</AnchorPane>
+	</children>
 </VBox>

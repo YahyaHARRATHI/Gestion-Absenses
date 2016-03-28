@@ -57,7 +57,7 @@ public class AuthController {
 
 				ConsulterAbsence controller = loader.<ConsulterAbsence> getController();
 
-				controller.setUser_id((test));
+				controller.setUserId((test));
 				
 				Scene scene = new Scene(pane);
 				// on peut faire new stage
