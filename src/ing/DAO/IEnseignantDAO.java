@@ -1,6 +1,6 @@
 package ing.DAO;
 
 public interface IEnseignantDAO {
-	public Boolean connect(String login,String password);
+	public Long connect(String login,String password);
 
 }

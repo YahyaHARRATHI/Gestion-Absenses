@@ -13,17 +13,13 @@
 <?import javafx.scene.control.SeparatorMenuItem?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.control.cell.*?> 
-<?import javafx.collections.*?> 
-<?import fxmltableview.*?> 
 
-<VBox prefHeight="531.0" prefWidth="694.0"
-	xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1"
-	fx:controller="ing.controller.ConsulterAbsence">
+<VBox prefHeight="531.0" prefWidth="694.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ing.controller.etudiant.ConsulterAbsence">
 	<children>
 		<MenuBar prefHeight="22.0" prefWidth="640.0" VBox.vgrow="ALWAYS">
 			<menus>
@@ -64,13 +60,11 @@
 				</Menu>
 			</menus>
 		</MenuBar>
-		<AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0"
-			prefWidth="-1.0" VBox.vgrow="ALWAYS">
+		<AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
 			<children>
 				<VBox layoutY="17.0">
 					<children>
-						<HBox prefHeight="27.0" prefWidth="640.0" spacing="28.0"
-							VBox.vgrow="ALWAYS">
+						<HBox prefHeight="27.0" prefWidth="640.0" spacing="28.0" VBox.vgrow="ALWAYS">
 							<children>
 								<Label text="Matiere : ">
 									<font>
@@ -82,12 +76,13 @@
 										<FXCollections fx:factory="observableArrayList">
 											<String fx:value="Android" />
 											<String fx:value="Anglais" />
-											<String fx:value="mathématique" />
+											<String fx:value="JSF" />
+											<String fx:value="Français" />
+											<String fx:value="Algebre" />
 										</FXCollections>
 									</items>
 								</ChoiceBox>
-								<Button fx:id="btnConsulter" mnemonicParsing="false"
-									onAction="#ConsulterAbs" text="Consulter absence" textFill="#1640a6" />
+								<Button fx:id="btnConsulter" mnemonicParsing="false" onAction="#ConsulterAbs" text="Consulter absence" textFill="#1640a6" />
 							</children>
 							<padding>
 								<Insets left="15.0" />
@@ -99,29 +94,31 @@
 								<Insets />
 							</VBox.margin>
 						</HBox>
-						<Separator orientation="VERTICAL" prefHeight="30.0"
-							prefWidth="640.0" />
+                  <Label fx:id="lblAbsence" prefHeight="17.0" prefWidth="256.0" text="Vous navez pas d'apsences dans cette matièere" textFill="#0af21a" visible="false">
+                     <VBox.margin>
+                        <Insets left="70.0" top="20.0" />
+                     </VBox.margin>
+                  </Label>
+						<Separator orientation="VERTICAL" prefHeight="92.0" prefWidth="640.0" visible="false" />
 						<HBox>
 							<children>
-								<TableView fx:id="tableabs" prefHeight="200.0"
-									prefWidth="401.0">
+                        <Separator orientation="VERTICAL" prefHeight="200.0" prefWidth="137.0" visible="false" />
+								<TableView fx:id="tableabs" prefHeight="200.0" prefWidth="297.0" visible="false">
 									<columns>
 										<TableColumn fx:id="num" prefWidth="63.0" text="Numero">
 											<cellValueFactory>
 												<PropertyValueFactory property="num" />
 											</cellValueFactory>
 										</TableColumn>
-										<TableColumn fx:id="date" minWidth="0.0"
-											prefWidth="236.0" text="Date" >
+										<TableColumn fx:id="date" minWidth="0.0" prefWidth="236.0" text="Date">
 											<cellValueFactory>
 												<PropertyValueFactory property="date" />
 											</cellValueFactory>
 										</TableColumn>
 									</columns>
-
-									<padding>
-										<Insets left="100.0" />
-									</padding>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
 								</TableView>
 							</children>
 						</HBox>

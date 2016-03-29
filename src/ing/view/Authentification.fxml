@@ -95,7 +95,7 @@
             </HBox>
             <HBox>
                <children>
-                  <Label alignment="CENTER" prefHeight="17.0" prefWidth="368.0" textFill="#f20d0d">
+                  <Label fx:id="lblerreur" alignment="CENTER" prefHeight="17.0" prefWidth="368.0" text="compte inexistant" textFill="#f20d0d" visible="false">
                      <padding>
                         <Insets left="100.0" />
                      </padding>
