@@ -1,4 +1,4 @@
-package ing.controller;
+package ing.model;
 
 import javafx.beans.property.SimpleStringProperty;
 
@@ -11,6 +11,7 @@ public class ModelAffichageAbs {
 		this("", "");
 	}
 
+	
 	public ModelAffichageAbs(String n, String d) {
 		num.set(n);
 		date.set(d);

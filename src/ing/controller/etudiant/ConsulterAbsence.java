@@ -1,14 +1,12 @@
 package ing.controller.etudiant;
 
 import java.io.IOException;
-import java.sql.Date;
-import java.util.ArrayList;
-import java.util.Iterator;
+
 import java.util.List;
 
 import ing.DAO.ImplAbsenceDAO;
 import ing.DAO.ImplMatiere;
-import ing.controller.ModelAffichageAbs;
+import ing.model.ModelAffichageAbs;
 import ing.entity.Absence;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -18,8 +16,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TreeTableColumn;
-import javafx.scene.control.TreeTableView;
+
 
 public class ConsulterAbsence {
 
