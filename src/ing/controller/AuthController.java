@@ -16,11 +16,12 @@ import javafx.scene.control.Label;
 
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
-
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class AuthController {
 
+	
 	@FXML
 	private Button Conectbutton;
 	@FXML
@@ -46,8 +47,7 @@ public class AuthController {
 		try {
 			// System.out.println(profileCombo.getValue());
 
-			if (profileCombo.getValue().equals("Etudiant"))
-				{
+			if (profileCombo.getValue().equals("Etudiant")) {
 				// etudiant
 				// table
 				ImplEtudiantDAO e = new ImplEtudiantDAO();
@@ -81,28 +81,28 @@ public class AuthController {
 				if (test != null) {
 					Stage stage1 = (Stage) Conectbutton.getScene().getWindow();
 
+
 					FXMLLoader loader = new FXMLLoader(getClass().getResource("/ing/view/professeur/AccueilP.fxml"));
 
-					Pane pane = (Pane) loader.load();
+					
 
-					ConsulterAbsence controller = loader.<ConsulterAbsence> getController();
+					// ConsulterAbsence controller = loader.<ConsulterAbsence>
+					// getController();
 
-					controller.setUserId((test));
+					// controller.setUserId((test));
 
-					Scene scene = new Scene(pane);
+					Scene scene = new Scene(loader.load());
 					// on peut faire new stage
 
 					stage1.setScene(scene);
 					stage1.show();
 				} else {
 
-					
 					lblerreur.setVisible(true);
 
 				}
 
-			}
-			else if (profileCombo.getValue().equals("Responsable")) {
+			} else if (profileCombo.getValue().equals("Responsable")) {
 				ResponsableService e = new ResponsableService();
 				Long test = e.connect(txtIdent.getText(), txtfield.getText());
 				if (test != null) {
@@ -128,6 +128,9 @@ public class AuthController {
 
 				}
 
+			} else if (profileCombo.getValue() == null) {
+				lblerreur.setText("Choisissez votre profile");
+				lblerreur.setVisible(true);
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

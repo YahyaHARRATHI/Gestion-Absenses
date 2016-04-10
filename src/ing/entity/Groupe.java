@@ -1,11 +1,15 @@
 package ing.entity;
-// Generated 19 mars 2016 16:26:07 by Hibernate Tools 4.3.1.Final
+// Generated 9 avr. 2016 22:00:36 by Hibernate Tools 4.3.1.Final
 
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -17,12 +21,14 @@ public class Groupe implements java.io.Serializable {
 
 	private Long id;
 	private String libelle;
+	private Set<Etudiant> etudiants = new HashSet<Etudiant>(0);
 
 	public Groupe() {
 	}
 
-	public Groupe(String libelle) {
+	public Groupe(String libelle, Set<Etudiant> etudiants) {
 		this.libelle = libelle;
+		this.etudiants = etudiants;
 	}
 
 	@Id
@@ -44,6 +50,15 @@ public class Groupe implements java.io.Serializable {
 
 	public void setLibelle(String libelle) {
 		this.libelle = libelle;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "groupe")
+	public Set<Etudiant> getEtudiants() {
+		return this.etudiants;
+	}
+
+	public void setEtudiants(Set<Etudiant> etudiants) {
+		this.etudiants = etudiants;
 	}
 
 }

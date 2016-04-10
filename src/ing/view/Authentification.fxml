@@ -73,8 +73,8 @@
                   </Label>
                   <ComboBox fx:id="profileCombo" prefWidth="100.0" promptText="Profile">
                      <items>
-                     <FXCollections fx:factory="observableArrayList">
-                     <String fx:value="Etudiant" />
+                     <FXCollections fx:factory="observableArrayList" >
+                     <String fx:value="Etudiant"/>
                      <String fx:value="Enseignant" />
                      <String fx:value="Responsable" />
                      

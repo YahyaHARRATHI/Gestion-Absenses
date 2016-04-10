@@ -11,12 +11,17 @@ import ing.entity.Absence;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-
+import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 
 public class ConsulterAbsence {
 
@@ -24,6 +29,8 @@ public class ConsulterAbsence {
 	private ChoiceBox<String> matiere;
 	@FXML
 	private Long userId;
+	@FXML
+	private Button btnConsulter;
 
 	@FXML
 	private Label lblAbsence;
@@ -55,24 +62,26 @@ public class ConsulterAbsence {
 		List<Absence> abs = a.listeAbsenceParMatiere(this.userId, id_mat);
 
 		ObservableList<ModelAffichageAbs> data = FXCollections.observableArrayList();
-		
-		if(abs!=null){
-		int i=0;
-		for (Absence absence : abs) {
-			//System.out.println(absence.getDate());
-			ModelAffichageAbs model = new ModelAffichageAbs();
-			model.setDate(absence.getDate().toString());
-			i++;
-			model.setNum(""+i+"");
 
-			data.add(model);
+		if (abs != null) {
+			int i = 0;
+			for (Absence absence : abs) {
+				// System.out.println(absence.getDate());
+				ModelAffichageAbs model = new ModelAffichageAbs();
+				model.setDate(absence.getDate().toString());
+				i++;
+				model.setNum("" + i + "");
+
+				data.add(model);
+
+			}
+			tableabs.setItems(data);
+			tableabs.setVisible(true);
+			lblAbsence.setVisible(false);
 
 		}
-		tableabs.setItems(data);
-		tableabs.setVisible(true);
-		}
-		
-		else{
+
+		else {
 			tableabs.setVisible(false);
 			lblAbsence.setVisible(true);
 		}
@@ -83,5 +92,28 @@ public class ConsulterAbsence {
 		 * 
 		 * }
 		 */
+	}
+
+	public void quitterInterface() {
+		
+		Stage stage1 = (Stage) btnConsulter.getScene().getWindow();
+		
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/ing/view/Authentification.fxml"));
+		
+
+		Pane pane = null;
+		try {
+			pane = (Pane) loader.load();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		// on peut faire new stage
+		stage1.close();
+		Stage s=new Stage();
+		Scene scene = new Scene(pane);
+		s.setScene(scene);
+		s.show();
+
 	}
 }

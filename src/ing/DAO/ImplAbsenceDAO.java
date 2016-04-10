@@ -12,6 +12,7 @@ import org.hibernate.Query;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
 import ing.entity.Absence;
@@ -71,7 +72,7 @@ public class ImplAbsenceDAO implements IAbsenceDAO {
 	}
 
 	@Override
-	public boolean ajouterAbsence(Absence abs, Long idEns, Long idMat, Long idEtud) {
+	public boolean ajouterAbsence(Absence abs) {
 		// TODO Auto-generated method stub
 		return false;
 	}
@@ -91,6 +92,70 @@ public class ImplAbsenceDAO implements IAbsenceDAO {
 	public List<Absence> listmail() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public List<Absence> absencesByMatiereAndGroupe(String matiere, Long groupe) {
+		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+
+		Session session = sessionFactory.openSession();
+		session.beginTransaction();
+
+		/*
+		 * Query q=session.createQuery(
+		 * "select e.nom,e.prenom,a.date from Absence a,Etudiant e" +
+		 * " where a.matiere:=x and e.groupe:=y"); q.setParameter("x", idMat);
+		 * q.setParameter("y", idGroupe);
+		 */
+
+		System.out.println(matiere);
+		Criteria c = session.createCriteria(Absence.class);
+		c.createAlias("etudiant", "e");
+		c.createAlias("matiere", "m");
+		c.add(Restrictions.eq("m.libelle", matiere));
+		c.add(Restrictions.eq("e.groupe.id", groupe));
+
+		if (c.list().size() == 0) {
+			System.out.println("requete null");
+			session.getTransaction().commit();
+			session.close();
+			return null;
+		}
+
+		else {
+			List<Absence> ret = c.list();
+			session.getTransaction().commit();
+			session.close();
+			return ret;
+		}
+
+	}
+
+	@Override
+	public List<Absence> getAbsenceForResponsable(Integer cin, String matiere) {
+		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+
+		Session session = sessionFactory.openSession();
+		session.beginTransaction();
+
+		Criteria c = session.createCriteria(Absence.class);
+		c.createAlias("etudiant", "e");
+		c.createAlias("matiere", "m");
+		c.add(Restrictions.eq("m.libelle", matiere));
+		c.add(Restrictions.eq("e.cin", matiere));
+		if (c.list().size() == 0) {
+			System.out.println("requete null");
+			session.getTransaction().commit();
+			session.close();
+			return null;
+		}
+
+		else {
+			List<Absence> ret = c.list();
+			session.getTransaction().commit();
+			session.close();
+			return ret;
+		}
 	}
 
 }
