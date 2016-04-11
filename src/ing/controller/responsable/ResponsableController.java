@@ -3,6 +3,15 @@ package ing.controller.responsable;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
+
+import javax.mail.Authenticator;
+import javax.mail.Message;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 
 import org.jboss.logging.MDC;
 
@@ -83,7 +92,64 @@ public class ResponsableController {
 		ImplAbsenceDAO daoAbsence=new ImplAbsenceDAO();
 		List<MailClass> m=daoAbsence.listmail();
 		
+		Properties props = new Properties();
 		
+
+		 String SENDERS_EMAIL = "devteach10@gmail.com";
+	     String SENDERS_PWD = "Pa$$w0rd2518251.";
+	    
+	    
+	    
+        // Set properties required to connect to Gmail's SMTP server
+	    props.put("mail.smtp.host", "smtp.gmail.com");
+	    props.put("mail.smtp.port", "465 ");    
+	    props.put("mail.smtp.auth", "true");
+	    props.put("mail.smtp.starttls.enable", "true"); 
+	    
+	    
+	    // Create a username-password authenticator to authenticate SMTP session
+        Authenticator authenticator = new Authenticator() {
+           //override the getPasswordAuthentication method
+           protected PasswordAuthentication getPasswordAuthentication() {
+               return new PasswordAuthentication(SENDERS_EMAIL, SENDERS_PWD);
+           }
+       };
+	    
+       // Create the mail session
+       Session session = Session.getDefaultInstance(props, authenticator);
+       try{
+           // Create a default MimeMessage object.
+           final MimeMessage message = new MimeMessage(session);
+           
+           // Set the sender's email address
+           message.setFrom(new InternetAddress(SENDERS_EMAIL));
+           
+           // Set recipient's email address
+           
+           for (MailClass mailClass : m) {
+			
+		
+           message.addRecipient(Message.RecipientType.TO, new InternetAddress(mailClass.getMail()));
+           
+           // Set the subject of the email
+           message.setSubject("Hello!");
+           
+           // Now set the actual message body of the email
+           message.setText("you are eliminated in this subject :  "+mailClass.getMatiere());
+           
+           System.out.println("Sending email...");
+           
+           // Send message
+           Transport.send(message);
+           
+           System.out.println("Email sent!");
+           
+           }
+           
+       }catch(Exception e){
+           System.err.println("Problem sending email. Exception : " + e.getMessage());
+       }
+       
 	}
 	
 	
