@@ -17,8 +17,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="400.0" prefWidth="640.0"
-	xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1">
+<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ing.controller.responsable.ResponsableController">
 	<children>
 		<MenuBar VBox.vgrow="NEVER">
 			<menus>
@@ -35,7 +34,7 @@
 						<SeparatorMenuItem mnemonicParsing="false" />
 						<MenuItem mnemonicParsing="false" text="Preferences…" />
 						<SeparatorMenuItem mnemonicParsing="false" />
-						<MenuItem mnemonicParsing="false" text="Quit" />
+						<MenuItem mnemonicParsing="false" onAction="#quitterInterface" text="Quit" />
 					</items>
 				</Menu>
 				<Menu mnemonicParsing="false" text="Edit">
@@ -59,26 +58,21 @@
 				</Menu>
 			</menus>
 		</MenuBar>
-		<TabPane prefHeight="376.0" prefWidth="640.0"
-			tabClosingPolicy="UNAVAILABLE">
+		<TabPane prefHeight="376.0" prefWidth="640.0" tabClosingPolicy="UNAVAILABLE">
 			<tabs>
 				<Tab text="Consulter absence">
 					<content>
-						<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0"
-							prefWidth="200.0" />
+						<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
 					</content>
 				</Tab>
 				<Tab text="Annuler absence">
 					<content>
-						<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0"
-							prefWidth="200.0">
+						<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
 							<children>
-								<Button layoutX="275.0" layoutY="79.0" mnemonicParsing="false"
-									text="Button" />
+								<Button layoutX="275.0" layoutY="79.0" mnemonicParsing="false" onAction="#consulterabsence" text="Button" />
 								<TextField fx:id="CINText" layoutX="94.0" layoutY="38.0" />
 								<Label layoutX="31.0" layoutY="42.0" text="CIN : " />
-								<ComboBox fx:id="comboMatiere" layoutX="94.0" layoutY="79.0"
-									prefWidth="150.0">
+								<ComboBox fx:id="comboMatiere" layoutX="94.0" layoutY="79.0" prefWidth="150.0">
 
 									<items>
 										<FXCollections fx:factory="observableArrayList">
@@ -92,13 +86,11 @@
 										
 								</ComboBox>
 								<Label layoutX="31.0" layoutY="83.0" text="Matiere : " />
-								<TableView fx:id="tblrespons" layoutX="56.0" layoutY="120.0"
-									prefHeight="123.0" prefWidth="560.0">
+								<TableView fx:id="tblrespons" cacheShape="false" layoutX="56.0" layoutY="120.0" prefHeight="123.0" prefWidth="560.0">
 									<columns>
 										<TableColumn prefWidth="43.0" text="Num" />
 										<TableColumn prefWidth="149.0" text="Nom" />
-										<TableColumn minWidth="8.0" prefWidth="172.0"
-											text="Prenom" />
+										<TableColumn minWidth="8.0" prefWidth="172.0" text="Prenom" />
 										<TableColumn prefWidth="195.0" text="Date" />
 									</columns>
 								</TableView>
@@ -108,14 +100,15 @@
 				</Tab>
 				<Tab text="Envoyer mail">
 					<content>
-						<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0"
-							prefWidth="200.0" />
+						<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Button layoutX="62.0" layoutY="30.0" mnemonicParsing="false" onAction="#envoyerMail" text="Button" />
+                     </children></AnchorPane>
 					</content>
 				</Tab>
 				<Tab text="imprimer liste">
 					<content>
-						<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0"
-							prefWidth="200.0" />
+						<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
 					</content>
 				</Tab>
 			</tabs>

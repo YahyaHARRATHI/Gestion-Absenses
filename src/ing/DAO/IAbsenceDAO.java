@@ -6,13 +6,15 @@ import ing.entity.Absence;
 
 public interface IAbsenceDAO {
 
+	
+	
 	/**
 	 * 
 	 * @param cin
 	 * @param matiere
 	 * @return
 	 */
-	public List<Absence> getAbsenceForResponsable(Integer cin,String matiere);
+	public List<Absence> getAbsenceForResponsable(int cin,String matiere);
 	/**
 	 * 
 	 * @param idEtudiant
@@ -47,6 +49,6 @@ public interface IAbsenceDAO {
 	 * 
 	 * @return
 	 */
-	public List<Absence> listmail();
+	public List<String> listmail();
 
 }

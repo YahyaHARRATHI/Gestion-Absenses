@@ -54,6 +54,7 @@ public class ModelAbsenceForProf {
 	public void setAbsences(String n) {
 		this.absences.set(n);
 	}
+	
 	public void concatabs(String d){
 		this.absences.set(getAbsences().concat(d));
 	}

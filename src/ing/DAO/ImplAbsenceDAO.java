@@ -13,6 +13,7 @@ import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
 import ing.entity.Absence;
@@ -89,8 +90,21 @@ public class ImplAbsenceDAO implements IAbsenceDAO {
 	 * @see ing.DAO.IAbsenceDAO#listmail()
 	 */
 	@Override
-	public List<Absence> listmail() {
-		// TODO Auto-generated method stub
+	public List<String> listmail() {
+		
+		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+
+		Session session = sessionFactory.openSession();
+		session.beginTransaction();
+		
+		
+		Query q=session.createQuery("select count(a.date),a.etudiant.id,a.etudiant.email from Absence a group by a.etudiant.id");
+		for (Object o : q.list()) {
+			System.out.println(o.toString());
+		}
+		
+		session.getTransaction().commit();
+		session.close();
 		return null;
 	}
 
@@ -132,7 +146,7 @@ public class ImplAbsenceDAO implements IAbsenceDAO {
 	}
 
 	@Override
-	public List<Absence> getAbsenceForResponsable(Integer cin, String matiere) {
+	public List<Absence> getAbsenceForResponsable(int cin, String matiere) {
 		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 
 		Session session = sessionFactory.openSession();
@@ -142,7 +156,7 @@ public class ImplAbsenceDAO implements IAbsenceDAO {
 		c.createAlias("etudiant", "e");
 		c.createAlias("matiere", "m");
 		c.add(Restrictions.eq("m.libelle", matiere));
-		c.add(Restrictions.eq("e.cin", matiere));
+		c.add(Restrictions.eq("e.cin", cin));
 		if (c.list().size() == 0) {
 			System.out.println("requete null");
 			session.getTransaction().commit();

@@ -12,13 +12,12 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
+
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.TableColumn;
+
 import javafx.scene.control.TableView;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -36,10 +35,7 @@ public class ConsulterAbsence {
 	private Label lblAbsence;
 	@FXML
 	private TableView<ModelAffichageAbs> tableabs;
-	@FXML
-	private TableColumn<ModelAffichageAbs, java.util.Date> date;
-	@FXML
-	private TableColumn<ModelAffichageAbs, Integer> num;
+	
 
 	// j'ai fait tous les getters and setters
 
