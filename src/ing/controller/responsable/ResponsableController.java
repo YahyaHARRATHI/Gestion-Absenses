@@ -2,11 +2,13 @@ package ing.controller.responsable;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 import org.jboss.logging.MDC;
 
 import ing.DAO.ImplAbsenceDAO;
 import ing.entity.Absence;
+import ing.model.MailClass;
 import ing.model.ModelAbsenceForProf;
 import ing.model.ModelAffichageAbs;
 import javafx.collections.FXCollections;
@@ -14,6 +16,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -25,6 +28,8 @@ public class ResponsableController {
 	@FXML
 	private TextField CINText;
 	
+	@FXML
+	private Button btnConsulter;
 	@FXML
 	private ComboBox<String> comboMatiere;
 	
@@ -76,7 +81,7 @@ public class ResponsableController {
 	public void envoyerMail(){ 
 		
 		ImplAbsenceDAO daoAbsence=new ImplAbsenceDAO();
-		daoAbsence.listmail();
+		List<MailClass> m=daoAbsence.listmail();
 		
 		
 	}
@@ -85,7 +90,7 @@ public class ResponsableController {
 	
 	public void quitterInterface() {
 
-		
+		Stage stage1 = (Stage) btnConsulter.getScene().getWindow();
 
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/ing/view/Authentification.fxml"));
 
@@ -98,10 +103,10 @@ public class ResponsableController {
 		}
 		// on peut faire new stage
 		
-		Stage s = new Stage();
+		
 		Scene scene = new Scene(pane);
-		s.setScene(scene);
-		s.show();
+		stage1.setScene(scene);
+		stage1.show();
 
 	}
 

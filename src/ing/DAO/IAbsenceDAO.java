@@ -1,8 +1,10 @@
 package ing.DAO;
 
 import java.util.List;
+import java.util.Map;
 
 import ing.entity.Absence;
+import ing.model.MailClass;
 
 public interface IAbsenceDAO {
 
@@ -49,6 +51,6 @@ public interface IAbsenceDAO {
 	 * 
 	 * @return
 	 */
-	public List<String> listmail();
+	public List<MailClass> listmail();
 
 }

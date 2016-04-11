@@ -69,7 +69,7 @@
 					<content>
 						<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
 							<children>
-								<Button layoutX="275.0" layoutY="79.0" mnemonicParsing="false" onAction="#consulterabsence" text="Button" />
+								<Button fx:id="btnConsulter" layoutX="275.0" layoutY="79.0" mnemonicParsing="false" onAction="#consulterabsence" text="Button" />
 								<TextField fx:id="CINText" layoutX="94.0" layoutY="38.0" />
 								<Label layoutX="31.0" layoutY="42.0" text="CIN : " />
 								<ComboBox fx:id="comboMatiere" layoutX="94.0" layoutY="79.0" prefWidth="150.0">

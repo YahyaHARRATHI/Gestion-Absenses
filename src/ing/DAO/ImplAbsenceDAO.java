@@ -4,8 +4,10 @@
 package ing.DAO;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import org.hibernate.Criteria;
 import org.hibernate.Query;
@@ -17,6 +19,7 @@ import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
 import ing.entity.Absence;
+import ing.model.MailClass;
 import ing.util.HibernateUtil;
 
 /**
@@ -90,22 +93,39 @@ public class ImplAbsenceDAO implements IAbsenceDAO {
 	 * @see ing.DAO.IAbsenceDAO#listmail()
 	 */
 	@Override
-	public List<String> listmail() {
-		
+	public List<MailClass> listmail() {
+
 		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
-		
-		
-		Query q=session.createQuery("select count(a.date),a.etudiant.id,a.etudiant.email from Absence a group by a.etudiant.id");
-		for (Object o : q.list()) {
-			System.out.println(o.toString());
+
+		List<MailClass> mailListe=new ArrayList<>() ;
+		Query q = session.createQuery("select count(distinct a.date),a.etudiant.id,a.etudiant.email,a.matiere.libelle "
+				+ "from Absence a group by a.etudiant.id,a.matiere.libelle");
+
+		List<Object[]> rows = q.list();
+
+		for (Object[] row : rows) {
+			System.out.println(" implAbsence : "+row[0] + " " + row[1] + " " + row[2] + " " + row[3]);
+
+			if ((Integer.parseInt(row[0].toString())) > 3)
+				mailListe.add(new MailClass( row[2].toString(),row[3].toString()));
+
 		}
-		
+
 		session.getTransaction().commit();
 		session.close();
+		if(mailListe.size()==0)
 		return null;
+		else{
+			for (MailClass mc : mailListe) {
+				System.out.println("list mail + matiere : "+ mc.getMail()+"  mail : "+mc.getMatiere());
+				
+			}
+			
+			return mailListe;
+		}
 	}
 
 	@Override
