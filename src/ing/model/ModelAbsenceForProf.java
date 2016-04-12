@@ -13,11 +13,11 @@ public class ModelAbsenceForProf {
 		this("", "", "", "");
 	}
 	
-	public ModelAbsenceForProf(String nu, String no, String p, String abs) {
-		num.set(nu);
-		nom.set(no);
-		prenom.set(p);
-		absences.set(abs);
+	public ModelAbsenceForProf(String x, String y, String z, String w) {
+		setNum(x);
+		setNom(y);
+		setPrenom(z);
+		setAbsences(w);
 
 	}
 	
@@ -55,9 +55,7 @@ public class ModelAbsenceForProf {
 		this.absences.set(n);
 	}
 	
-	public void concatabs(String d){
-		this.absences.set(getAbsences().concat(d));
-	}
+
 
 
 

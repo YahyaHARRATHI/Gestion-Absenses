@@ -90,7 +90,7 @@ public class ProfesseurController {
 						+ absence.getEtudiant().getPrenom() + " date " + absence.getDate());
 
 				if (absence.getEtudiant().getId() == idTest) {
-					model.concatabs((absence.getDate().toString()));
+					model.setAbsences((model.getAbsences().concat("\n"+absence.getDate().toString())));
 					System.out.println("absences concat " + model.getAbsences());
 
 				} else {

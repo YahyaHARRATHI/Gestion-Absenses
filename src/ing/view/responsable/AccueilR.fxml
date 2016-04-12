@@ -14,6 +14,7 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
@@ -81,17 +82,35 @@
 											<String fx:value="JSF" />
 											<String fx:value="Français" />
 											<String fx:value="Algebre" />
-											</FXCollections>
-											</items>
-										
+										</FXCollections>
+									</items>
+
 								</ComboBox>
 								<Label layoutX="31.0" layoutY="83.0" text="Matiere : " />
-								<TableView fx:id="tblrespons" cacheShape="false" layoutX="56.0" layoutY="120.0" prefHeight="123.0" prefWidth="560.0">
+								<TableView fx:id="tblrespons" cacheShape="false" layoutX="56.0" layoutY="120.0" prefHeight="215.0" prefWidth="560.0">
 									<columns>
-										<TableColumn prefWidth="43.0" text="Num" />
-										<TableColumn prefWidth="149.0" text="Nom" />
-										<TableColumn minWidth="8.0" prefWidth="172.0" text="Prenom" />
-										<TableColumn prefWidth="195.0" text="Date" />
+
+										<TableColumn fx:id="num" prefWidth="43.0" text="Num">
+											<cellValueFactory>
+												<PropertyValueFactory property="num" />
+											</cellValueFactory>
+										</TableColumn>
+										<TableColumn fx:id="nom" prefWidth="149.0" text="Nom">
+											<cellValueFactory>
+												<PropertyValueFactory property="nom" />
+											</cellValueFactory>
+										</TableColumn>
+										<TableColumn fx:id="prenom" minWidth="8.0" prefWidth="172.0" text="Prenom">
+											<cellValueFactory>
+												<PropertyValueFactory property="prenom" />
+											</cellValueFactory>
+										</TableColumn>
+										<TableColumn fx:id="absences" prefWidth="195.0" text="Date">
+											<cellValueFactory>
+												<PropertyValueFactory property="absences" />
+											</cellValueFactory>
+										</TableColumn>
+
 									</columns>
 								</TableView>
 							</children>
@@ -101,9 +120,10 @@
 				<Tab text="Envoyer mail">
 					<content>
 						<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                     <children>
-                        <Button layoutX="62.0" layoutY="30.0" mnemonicParsing="false" onAction="#envoyerMail" text="Button" />
-                     </children></AnchorPane>
+							<children>
+								<Button layoutX="62.0" layoutY="30.0" mnemonicParsing="false" onAction="#envoyerMail" text="Button" />
+							</children>
+						</AnchorPane>
 					</content>
 				</Tab>
 				<Tab text="imprimer liste">

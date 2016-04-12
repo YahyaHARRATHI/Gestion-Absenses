@@ -109,7 +109,7 @@ public class ImplAbsenceDAO implements IAbsenceDAO {
 		for (Object[] row : rows) {
 			System.out.println(" implAbsence : "+row[0] + " " + row[1] + " " + row[2] + " " + row[3]);
 
-			if ((Integer.parseInt(row[0].toString())) > 3)
+			if ((Integer.parseInt(row[0].toString())) > 2)
 				mailListe.add(new MailClass( row[2].toString(),row[3].toString()));
 
 		}

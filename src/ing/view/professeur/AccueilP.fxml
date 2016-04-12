@@ -14,6 +14,7 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
@@ -102,17 +103,35 @@
 										<Insets left="20.0" top="20.0" />
 									</VBox.margin>
 								</HBox>
-								<HBox prefHeight="100.0" prefWidth="200.0">
+								<HBox prefHeight="233.0" prefWidth="640.0">
 									<VBox.margin>
 										<Insets top="20.0" />
 									</VBox.margin>
 									<children>
-										<TableView fx:id="tbl" prefHeight="100.0" prefWidth="494.0">
+										<TableView fx:id="tbl" prefHeight="212.0" prefWidth="568.0">
 											<columns>
-												<TableColumn prefWidth="57.0" text="Numero" />
-												<TableColumn prefWidth="114.0" text="Nom" />
-												<TableColumn prefWidth="117.0" text="Prenom" />
-												<TableColumn prefWidth="205.0" text="Absences" />
+											
+												<TableColumn prefWidth="57.0" text="Numero">
+												<cellValueFactory>
+												<PropertyValueFactory property="num" />
+											</cellValueFactory>
+												</TableColumn>
+												<TableColumn prefWidth="114.0" text="Nom">
+												<cellValueFactory>
+												<PropertyValueFactory property="nom" />
+											</cellValueFactory>
+												</TableColumn>
+												<TableColumn prefWidth="117.0" text="Prenom">
+												<cellValueFactory>
+												<PropertyValueFactory property="prenom" />
+											</cellValueFactory>
+												</TableColumn>
+												<TableColumn prefWidth="279.0" text="Absences">
+												<cellValueFactory>
+												<PropertyValueFactory property="absences" />
+											</cellValueFactory>
+												</TableColumn>
+												
 											</columns>
 											<HBox.margin>
 												<Insets left="20.0" />

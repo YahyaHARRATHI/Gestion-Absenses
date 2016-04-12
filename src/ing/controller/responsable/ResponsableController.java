@@ -45,7 +45,7 @@ public class ResponsableController {
 	@FXML
 	private TableView<ModelAbsenceForProf> tblrespons;
 	
-	public void consulterabsence(){
+	public void consulterabsence() throws Exception{
 		
 		
 		ImplAbsenceDAO daoAbsence=new ImplAbsenceDAO();
@@ -63,8 +63,7 @@ public class ResponsableController {
 		for (Absence absence : l) {
 			
 			i++;
-			
-			
+						
 			ModelAbsenceForProf m=new ModelAbsenceForProf(""+i+"", 
 					absence.getEtudiant().getNom(),
 					absence.getEtudiant().getPrenom(), absence.getDate().toString());
@@ -78,7 +77,9 @@ public class ResponsableController {
 			System.out.println("data empty");
 		}
 		System.out.println(data.get(1).getNom());
+		
 		tblrespons.setItems(data);
+		tblrespons.refresh();
 		
 		
 	
