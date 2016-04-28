@@ -29,6 +29,8 @@ public class GroupeDAO {
 			return null;
 		}
 		
+		
+		
 		else {
 			Groupe grp=new Groupe();
 			List<Groupe> l=c.list();
@@ -37,6 +39,7 @@ public class GroupeDAO {
 				grp=g;
 			}
 			return grp.getId();
+			
 		}
 		
 	}

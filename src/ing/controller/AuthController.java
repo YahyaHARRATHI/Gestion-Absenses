@@ -21,7 +21,8 @@ import javafx.stage.Stage;
 
 public class AuthController {
 
-	
+	@FXML
+        private VBox panel;
 	@FXML
 	private Button Conectbutton;
 	@FXML

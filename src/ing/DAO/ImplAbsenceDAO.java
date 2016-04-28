@@ -4,21 +4,20 @@
 package ing.DAO;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
+
 import java.util.List;
-import java.util.Map;
+
 
 import org.hibernate.Criteria;
 import org.hibernate.Query;
-import org.hibernate.SQLQuery;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.criterion.Order;
-import org.hibernate.criterion.Projections;
+
 import org.hibernate.criterion.Restrictions;
 
 import ing.entity.Absence;
+import ing.model.ImprimeModel;
 import ing.model.MailClass;
 import ing.util.HibernateUtil;
 
@@ -191,5 +190,52 @@ public class ImplAbsenceDAO implements IAbsenceDAO {
 			return ret;
 		}
 	}
+/*
+    @Override
+    public List<ImprimeModel> imprimer(String matiere, Long groupe) {
+    
+    SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 
+	Session session = sessionFactory.openSession();
+	session.beginTransaction();
+
+	List<ImprimeModel> imprimeListe=new ArrayList<>() ;
+	Query q = session.createQuery("select count(distinct a.date),a.etudiant.id,a.etudiant.cin,a.etudiant.nom "
+	+ "a.etudiant.prenom from Absence a "
+                +"where a.matiere.libelle=:x  and a.etudiant.groupe.id=:y  group by a.etudiant.id");
+ q.setParameter("x", matiere);
+ q.setParameter("y", groupe);
+		List<Object[]> rows = q.list();
+
+		for (Object[] row : rows) {
+			System.out.println(" implAbsence : "+row[0] + " " + row[1] + " " + row[2] + " " + row[3]);
+
+			if ((Integer.parseInt(row[0].toString())) > 2)
+				imprimeListe.add(new ImprimeModel(row[2].toString(),row[3].toString()));
+
+		}
+
+		session.getTransaction().commit();
+		session.close();
+		if(mailListe.size()==0)
+		return null;
+		else{
+			for (MailClass mc : mailListe) {
+				System.out.println("list mail + matiere : "+ mc.getMail()+"  mail : "+mc.getMatiere());
+				
+			}
+			
+			return mailListe;
+		}
+    
+
+	
 }
+  */  
+
+    @Override
+    public List<ImprimeModel> imprimer(String matiere, Long groupe) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+}
+

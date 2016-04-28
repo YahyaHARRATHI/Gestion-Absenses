@@ -4,26 +4,33 @@ import java.util.List;
 import java.util.Map;
 
 import ing.entity.Absence;
+import ing.model.ImprimeModel;
 import ing.model.MailClass;
 
 public interface IAbsenceDAO {
 
 	
-	
-	/**
-	 * 
-	 * @param cin
-	 * @param matiere
-	 * @return
-	 */
+    
+    /**
+     * 
+     * @param matiere
+     * @param groupe
+     * @return 
+     */
+    public List<ImprimeModel> imprimer(String matiere,Long groupe);
+    
+    
+    
+    
 	public List<Absence> getAbsenceForResponsable(int cin,String matiere);
+
+	
 	/**
 	 * 
 	 * @param idEtudiant
 	 * @param idMatiere
 	 * @return
 	 */
-	// pour l'étudiant et l'enseignat et le responsable
 	public List<Absence> listeAbsenceParMatiere(Long idEtudiant, Long idMatiere);
 
 	/**
@@ -39,6 +46,7 @@ public interface IAbsenceDAO {
 
 	// pour le professeur
 	/**
+	 * 
 	 * 
 	 * @param idMat
 	 * @param idGroupe
