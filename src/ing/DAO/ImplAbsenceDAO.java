@@ -21,11 +21,46 @@ import ing.model.ImprimeModel;
 import ing.model.MailClass;
 import ing.util.HibernateUtil;
 
+
+
 /**
  * @author yaya
  *
  */
 public class ImplAbsenceDAO implements IAbsenceDAO {
+	
+	
+	
+	public List<Absence> Etudiants(String matiere, Long groupe){
+		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+
+		Session session = sessionFactory.openSession();
+		session.beginTransaction();
+
+		
+		
+		Criteria c = session.createCriteria(Absence.class);
+		c.createAlias("etudiant", "e");
+		c.createAlias("matiere", "m");
+		c.add(Restrictions.eq("m.libelle", matiere));
+		c.add(Restrictions.eq("e.groupe.id", groupe));
+
+		if (c.list().size() == 0) {
+			System.out.println("requete null");
+			session.getTransaction().commit();
+			session.close();
+			return null;
+		}
+
+		else {
+			List<Absence> ret = c.list();
+			session.getTransaction().commit();
+			session.close();
+			return ret;
+		}
+		
+		
+	}
 
 	@Override
 	public List<Absence> listeAbsenceParMatiere(Long idEtudiant, Long idMatiere) {
@@ -82,8 +117,21 @@ public class ImplAbsenceDAO implements IAbsenceDAO {
 
 	@Override
 	public boolean annulerAbsence(Long id) {
-		// TODO Auto-generated method stub
-		return false;
+		
+		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+
+		Session session = sessionFactory.openSession();
+		session.beginTransaction();
+		
+		Query q = session.createQuery("delete from Absence  where id=:x ");
+			 q.setParameter("x", id);
+			 
+					q.executeUpdate();
+					session.getTransaction().commit();
+					session.close();
+					
+					
+		return true;
 	}
 
 	/*

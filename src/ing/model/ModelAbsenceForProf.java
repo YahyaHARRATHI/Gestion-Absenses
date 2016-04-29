@@ -3,22 +3,31 @@ package ing.model;
 import javafx.beans.property.SimpleStringProperty;
 
 public class ModelAbsenceForProf {
-
+	private final SimpleStringProperty idAbsence = new SimpleStringProperty("");
 	private final SimpleStringProperty num = new SimpleStringProperty("");
 	private final SimpleStringProperty nom = new SimpleStringProperty("");
 	private final SimpleStringProperty prenom = new SimpleStringProperty("");
 	private final SimpleStringProperty absences = new SimpleStringProperty("");
 
 	public ModelAbsenceForProf() {
-		this("", "", "", "");
+		this("", "", "", "","");
 	}
 	
-	public ModelAbsenceForProf(String x, String y, String z, String w) {
+	public ModelAbsenceForProf(String x, String y, String z, String w,String id) {
 		setNum(x);
 		setNom(y);
 		setPrenom(z);
 		setAbsences(w);
+		setIdAbsence(id);
 
+	}
+	
+	public String getIdAbsence(){
+		return idAbsence.get();
+	}
+	
+	public void setIdAbsence(String n) {
+		this.idAbsence.set(n);
 	}
 	
 	public String getNum() {

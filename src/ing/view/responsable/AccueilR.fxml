@@ -124,7 +124,7 @@
                                     </HBox>
                                     <HBox prefHeight="225.0" prefWidth="578.0">
                                        <children>
-                                          <TableView fx:id="tbl" prefHeight="201.0" prefWidth="468.0">
+                                          <TableView fx:id="tbl" prefHeight="201.0" prefWidth="410.0">
                                             <columns>
                                               <TableColumn prefWidth="57.0" text="Numero">
 												<cellValueFactory>
@@ -136,16 +136,17 @@
 												<PropertyValueFactory property="nom" />
 											</cellValueFactory>
 												</TableColumn>
-												<TableColumn prefWidth="117.0" text="Prenom">
+												<TableColumn prefWidth="101.0" text="Prenom">
 												<cellValueFactory>
 												<PropertyValueFactory property="prenom" />
 											</cellValueFactory>
 												</TableColumn>
-												<TableColumn prefWidth="279.0" text="Absences">
+												<TableColumn minWidth="0.0" prefWidth="136.0" text="Absences">
 												<cellValueFactory>
 												<PropertyValueFactory property="absences" />
 											</cellValueFactory>
 												</TableColumn>
+                                                <TableColumn prefWidth="234.0" text="idAbsence" visible="false" />
                                             </columns>
                                           </TableView>
                                        </children>
@@ -167,10 +168,10 @@
 					<content>
 						<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="background" stylesheets="@styleR.css">
 							<children>
-								<Button fx:id="btnConsulter" layoutX="275.0" layoutY="79.0" mnemonicParsing="false" onAction="#consulterabsence" text="Button" />
-								<TextField fx:id="CINText" layoutX="94.0" layoutY="38.0" />
-								<Label layoutX="31.0" layoutY="42.0" text="CIN : " />
-								<ComboBox fx:id="comboMatiere" layoutX="94.0" layoutY="79.0" prefWidth="150.0">
+								<Button fx:id="btnConsulter" layoutX="276.0" layoutY="49.0" mnemonicParsing="false" onAction="#consulterabsence" text="Afficher Absence" />
+								<TextField fx:id="CINText" layoutX="95.0" layoutY="14.0" />
+								<Label layoutX="31.0" layoutY="18.0" text="CIN : " />
+								<ComboBox fx:id="comboMatiere" layoutX="95.0" layoutY="49.0" prefWidth="150.0">
 
 									<items>
 										<FXCollections fx:factory="observableArrayList">
@@ -183,8 +184,8 @@
 									</items>
 
 								</ComboBox>
-								<Label layoutX="31.0" layoutY="83.0" text="Matiere : " />
-								<TableView fx:id="tblrespons" cacheShape="false" layoutX="56.0" layoutY="120.0" prefHeight="215.0" prefWidth="560.0">
+								<Label layoutX="21.0" layoutY="53.0" text="Matiere : " />
+								<TableView fx:id="tblrespons" cacheShape="false" layoutX="49.0" layoutY="90.0" onMouseClicked="#Effacer" prefHeight="170.0" prefWidth="560.0">
 									<columns>
 
 										<TableColumn fx:id="num" prefWidth="43.0" text="Num">
@@ -206,10 +207,18 @@
 											<cellValueFactory>
 												<PropertyValueFactory property="absences" />
 											</cellValueFactory>
+											
+										</TableColumn>
+										<TableColumn fx:id="idAbsence" prefWidth="195.0" text="Date">
+											<cellValueFactory>
+												<PropertyValueFactory property="idAbsence" />
+											</cellValueFactory>
+											
 										</TableColumn>
 
 									</columns>
 								</TableView>
+                        <Button layoutX="536.0" layoutY="280.0" mnemonicParsing="false" onAction="#supprimerAbsence" text="Supprimer" />
 							</children>
 						</AnchorPane>
 					</content>

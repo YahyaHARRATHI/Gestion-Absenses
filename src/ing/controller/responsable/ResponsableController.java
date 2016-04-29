@@ -32,6 +32,7 @@ import java.io.FileNotFoundException;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -67,6 +68,7 @@ public class ResponsableController {
 	@FXML
 	private ComboBox<String> comboMatiere;
 
+	String idSuprimer;
 	@FXML
 	private TableView<ModelAbsenceForProf> tblrespons;
 	/*
@@ -107,6 +109,32 @@ public class ResponsableController {
 	 * 
 	 */
 
+	
+	
+	
+	public void supprimerAbsence(){
+		
+		ImplAbsenceDAO a=new ImplAbsenceDAO();
+		a.annulerAbsence(Long.parseLong(idSuprimer));
+		tblrespons.refresh();
+		try {
+			consulterabsence();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void Effacer(){
+		
+		
+			 ModelAbsenceForProf res=tblrespons.getSelectionModel().getSelectedItem();
+	            	System.out.println(res.getIdAbsence());
+	            	idSuprimer=res.getIdAbsence();
+	            	
+	            	
+	       
+	}
 	public void consulterAbsenceongun() {
 
 		String mat = choiceMatiereOngletUn.getValue();
@@ -187,7 +215,7 @@ public class ResponsableController {
 				i++;
 
 				ModelAbsenceForProf m = new ModelAbsenceForProf("" + i + "", absence.getEtudiant().getNom(),
-						absence.getEtudiant().getPrenom(), absence.getDate().toString());
+						absence.getEtudiant().getPrenom(), absence.getDate().toString(),absence.getId().toString());
 
 				data.add(m);
 			}

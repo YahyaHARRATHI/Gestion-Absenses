@@ -14,13 +14,18 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 public class ProfesseurController {
+@FXML
+private ChoiceBox<String> matierechoice ;
 
+@FXML
+private ChoiceBox<String> choicegroupe;
 	@FXML
 	private Button btnConsulter;
 	@FXML
@@ -64,6 +69,26 @@ public class ProfesseurController {
 		this.comboGroupe = comboGroupe;
 	}
 
+	
+	public void etudiants(){
+		
+		ImplAbsenceDAO dao = new ImplAbsenceDAO();
+		GroupeDAO grpDao = new GroupeDAO();
+
+		Long res = grpDao.getGroupe(choicegroupe.getValue().toString());
+		ObservableList<ModelAbsenceForProf> data = FXCollections.observableArrayList();
+		System.out.println("res " + res);
+		List<Absence> l = dao.absencesByMatiereAndGroupe(matierechoice.getValue(), res);
+		
+		
+		
+		
+	}
+	
+	
+	
+	
+	
 	public void listeAbsence() {
 
 		ImplAbsenceDAO dao = new ImplAbsenceDAO();
@@ -71,55 +96,29 @@ public class ProfesseurController {
 
 		Long res = grpDao.getGroupe(comboGroupe.getValue().toString());
 		ObservableList<ModelAbsenceForProf> data = FXCollections.observableArrayList();
-		System.out.println("res " + res);
-		List<Absence> l = dao.absencesByMatiereAndGroupe(comboMatiere.getValue(), res);
-		if (l == null) {
-			System.out.println(" liste l dan le controlleur nuuuuuul");
-
-		}
-
-		else {
-			
-			ModelAbsenceForProf model = null;
-			Long idTest = 0L;
+		
+		List<Absence> l = dao.Etudiants(comboMatiere.getValue(), res);
+		
+		if (l.size() == 0) {
+			System.out.println(" liste null ");
+		} else {
 			int i = 0;
-
 			for (Absence absence : l) {
 
-				System.out.println("nom = " + absence.getEtudiant().getNom() + "prenom "
-						+ absence.getEtudiant().getPrenom() + " date " + absence.getDate());
+				i++;
 
-				if (absence.getEtudiant().getId() == idTest) {
-					model.setAbsences((model.getAbsences().concat("\n"+absence.getDate().toString())));
-					System.out.println("absences concat " + model.getAbsences());
+				ModelAbsenceForProf m = new ModelAbsenceForProf("" + i + "", absence.getEtudiant().getNom(),
+						absence.getEtudiant().getPrenom(), absence.getDate().toString(),absence.getId().toString());
 
-				} else {
-					// pour la premiere insertion
-					if (model != null)
-						data.add(model);
-					model = new ModelAbsenceForProf();
-					model.setNom(absence.getEtudiant().getNom());
-					System.out.println(absence.getEtudiant().getNom());
-					model.setPrenom(absence.getEtudiant().getPrenom());
-					System.out.println(absence.getEtudiant().getPrenom());
-					i++;
-					model.setNum(""+i+"");
-					model.setAbsences(absence.getDate().toString());
-					idTest = absence.getEtudiant().getId();
-				}
-
+				data.add(m);
 			}
 
-			if (model != null) {
-				data.add(model);
-				System.out.println(model.getAbsences()+"   "+model.getNom()+" "+model.getNum());
-				
-				tbl.setItems(data);
-				tbl.setVisible(true);
-				// tableabs.setVisible(true);
+			if (data.size() == 0) {
+				System.out.println("data empty");
+			}
+			System.out.println(data.get(1).getNom());
 
-			} else
-				System.out.println("model still empty man ");
+			
 
 		}
 	}
