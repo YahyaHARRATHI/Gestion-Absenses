@@ -6,6 +6,8 @@ import ing.DAO.ImplEnseignantDAO;
 import ing.DAO.ImplEtudiantDAO;
 import ing.DAO.ResponsableService;
 import ing.controller.etudiant.ConsulterAbsence;
+//import ing.controller.professeur.Enseignant;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 
@@ -83,16 +85,15 @@ public class AuthController {
 					Stage stage1 = (Stage) Conectbutton.getScene().getWindow();
 
 
-					FXMLLoader loader = new FXMLLoader(getClass().getResource("/ing/view/professeur/AccueilP.fxml"));
+					FXMLLoader loader = new FXMLLoader(getClass().getResource("/ing/view/professeur/pageEnseignant.fxml"));
 
-					
+					Pane pane = (Pane) loader.load();
 
-					// ConsulterAbsence controller = loader.<ConsulterAbsence>
-					// getController();
+//					 Enseignant controller = loader.<Enseignant>getController();
 
-					// controller.setUserId((test));
+					// controller.setUserId(test);
 
-					Scene scene = new Scene(loader.load());
+					Scene scene = new Scene(pane);
 					// on peut faire new stage
 
 					stage1.setScene(scene);

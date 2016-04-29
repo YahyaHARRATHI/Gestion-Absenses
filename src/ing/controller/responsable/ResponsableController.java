@@ -44,195 +44,226 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
-
 public class ResponsableController {
-	
+
 	@FXML
 	private TextField CINText;
-	
-        @FXML
-        private ChoiceBox<String> matiereBox;
-        
-         @FXML
-        private ChoiceBox<String> groupeBox;
+
+	@FXML
+	private ChoiceBox<String> matiereBox;
+
+	@FXML
+	private TableView<ModelAbsenceForProf> tbl;
+
+	@FXML
+	private ChoiceBox<String> groupeBox;
 	@FXML
 	private ChoiceBox<String> choiceMatiereOngletUn;
-	
+
 	@FXML
 	private ChoiceBox<String> choiceGroupeOngletUn;
 	@FXML
 	private Button btnConsulter;
 	@FXML
 	private ComboBox<String> comboMatiere;
-	
+
 	@FXML
 	private TableView<ModelAbsenceForProf> tblrespons;
 	/*
-        public void imprimer()  throws FileNotFoundException, DocumentException{
-            ImplAbsenceDAO daoAbsence=new ImplAbsenceDAO();
-            
-            GroupeDAO grpDao = new GroupeDAO();
+	 * public void imprimer() throws FileNotFoundException, DocumentException{
+	 * ImplAbsenceDAO daoAbsence=new ImplAbsenceDAO();
+	 * 
+	 * GroupeDAO grpDao = new GroupeDAO();
+	 * 
+	 * Long res = grpDao.getGroupe(groupeBox.getValue().toString());
+	 * List<Absence>
+	 * l=daoAbsence.absencesByMatiereAndGroupe(matiereBox.getValue(),res);
+	 * 
+	 * 
+	 * 
+	 * if (l == null) { System.out.println(
+	 * " liste l de la classe REsponsableController est vide");
+	 * 
+	 * }
+	 * 
+	 * else {
+	 * 
+	 * Document document = new Document(); PdfPTable table = new PdfPTable(new
+	 * float[] { 2, 1, 2 });
+	 * table.getDefaultCell().setHorizontalAlignment(Element.ALIGN_CENTER);
+	 * table.addCell("Nom"); table.addCell("Prenom"); table.addCell("CIN");
+	 * table.addCell("Nombre d'absence"); table.setHeaderRows(1); PdfPCell[]
+	 * cells = table.getRow(0).getCells(); for (int j=0;j<cells.length;j++){
+	 * cells[j].setBackgroundColor(BaseColor.GRAY); } for (int i=1;i<5;i++){
+	 * table.addCell(""++""); table.addCell(""++""); table.addCell(""++""); }
+	 * PdfWriter.getInstance(document, new FileOutputStream("sample3.pdf"));
+	 * document.open(); document.add(table); document.close();
+	 * System.out.println("Done"); }
+	 * 
+	 * }
+	 * 
+	 * 
+	 * 
+	 * 
+	 */
 
-		Long res = grpDao.getGroupe(groupeBox.getValue().toString());
-            List<Absence> l=daoAbsence.absencesByMatiereAndGroupe(matiereBox.getValue(),res);
-            
-            
-            
-            if (l == null) {
-			System.out.println(" liste l de la classe REsponsableController est vide");
+	public void consulterAbsenceongun() {
 
-		}
+		String mat = choiceMatiereOngletUn.getValue();
+		String grp = choiceGroupeOngletUn.getValue();
 
-		else {
-                
-                 Document document = new Document();
-	               PdfPTable table = new PdfPTable(new float[] { 2, 1, 2 });
-	  table.getDefaultCell().setHorizontalAlignment(Element.ALIGN_CENTER);
-	  table.addCell("Nom");
-          table.addCell("Prenom");
-          table.addCell("CIN");
-          table.addCell("Nombre d'absence");
-	  table.setHeaderRows(1);
-	  PdfPCell[] cells = table.getRow(0).getCells(); 
-	  for (int j=0;j<cells.length;j++){
-	     cells[j].setBackgroundColor(BaseColor.GRAY);
-	  }
-          for (int i=1;i<5;i++){
-    	     table.addCell(""++"");
-             table.addCell(""++"");
-             table.addCell(""++"");
-          }
-	  PdfWriter.getInstance(document, new FileOutputStream("sample3.pdf"));
-	  document.open();
-          document.add(table);
-	  document.close();
-	  System.out.println("Done");
-      }
-                
-            }
-            
-            
-        
-	
-        */
-        
-        
-        
-	public void btnConsulterOngletUn(){
-		
-		
-	}
-	
-	public void consulterabsence() throws Exception{
-		
-		
-		ImplAbsenceDAO daoAbsence=new ImplAbsenceDAO();
-		
-		
+		ImplAbsenceDAO dao = new ImplAbsenceDAO();
+		GroupeDAO grpDao = new GroupeDAO();
+
+		Long res = grpDao.getGroupe(grp);
 		ObservableList<ModelAbsenceForProf> data = FXCollections.observableArrayList();
-		Integer in=Integer.parseInt(CINText.getText());
-		List<Absence> l=daoAbsence.getAbsenceForResponsable(in, comboMatiere.getValue());
-	
-		if(l.size()==0){
-			System.out.println(" liste null ");
-		}
-		else {
-			int i=0;
-		for (Absence absence : l) {
-			
-			i++;
-						
-			ModelAbsenceForProf m=new ModelAbsenceForProf(""+i+"", 
-					absence.getEtudiant().getNom(),
-					absence.getEtudiant().getPrenom(), absence.getDate().toString());
-			
-			data.add(m);
-		}
-		
-		
-		
-		if(data.size()==0){
-			System.out.println("data empty");
-		}
-		System.out.println(data.get(1).getNom());
-		
-		tblrespons.setItems(data);
-		tblrespons.refresh();
-		
-		
-	
-		}
-		
-	}
-	
-	
-	public void envoyerMail(){ 
-		
-		ImplAbsenceDAO daoAbsence=new ImplAbsenceDAO();
-		List<MailClass> m=daoAbsence.listmail();
-		
-		Properties props = new Properties();
-		
+		System.out.println("res " + res);
+		List<Absence> l = dao.absencesByMatiereAndGroupe(mat, res);
+		if (l == null) {
+			System.out.println(" liste l dan le controlleur nuuuuuul");
 
-		 String SENDERS_EMAIL = "devteach10@gmail.com";
-	     String SENDERS_PWD = "Pa$$w0rd2518251.";
-	    
-	    
-	    
-        // Set properties required to connect to Gmail's SMTP server
-	    props.put("mail.smtp.host", "smtp.gmail.com");
-	    props.put("mail.smtp.port", "465 ");    
-	    props.put("mail.smtp.auth", "true");
-	    props.put("mail.smtp.starttls.enable", "true"); 
-	    
-	    
-	    // Create a username-password authenticator to authenticate SMTP session
-        Authenticator authenticator = new Authenticator() {
-           //override the getPasswordAuthentication method
-           protected PasswordAuthentication getPasswordAuthentication() {
-               return new PasswordAuthentication(SENDERS_EMAIL, SENDERS_PWD);
-           }
-       };
-	    
-       // Create the mail session
-       Session session = Session.getDefaultInstance(props, authenticator);
-       try{
-           // Create a default MimeMessage object.
-           final MimeMessage message = new MimeMessage(session);
-           
-           // Set the sender's email address
-           message.setFrom(new InternetAddress(SENDERS_EMAIL));
-           
-           // Set recipient's email address
-           
-           for (MailClass mailClass : m) {
-			
-		
-           message.addRecipient(Message.RecipientType.TO, new InternetAddress(mailClass.getMail()));
-           
-           // Set the subject of the email
-           message.setSubject("Hello!");
-           
-           // Now set the actual message body of the email
-           message.setText("you are eliminated in this subject :  "+mailClass.getMatiere());
-           
-           System.out.println("Sending email...");
-           
-           // Send message
-           Transport.send(message);
-           
-           System.out.println("Email sent!");
-           
-           }
-           
-       }catch(Exception e){
-           System.err.println("Problem sending email. Exception : " + e.getMessage());
-       }
-       
+		}
+
+		else {
+
+			ModelAbsenceForProf model = null;
+			Long idTest = 0L;
+			int i = 0;
+
+			for (Absence absence : l) {
+
+				System.out.println("nom = " + absence.getEtudiant().getNom() + "prenom "
+						+ absence.getEtudiant().getPrenom() + " date " + absence.getDate());
+
+				if (absence.getEtudiant().getId() == idTest) {
+					model.setAbsences((model.getAbsences().concat("\n" + absence.getDate().toString())));
+					System.out.println("absences concat " + model.getAbsences());
+
+				} else {
+					// pour la premiere insertion
+					if (model != null)
+						data.add(model);
+					model = new ModelAbsenceForProf();
+					model.setNom(absence.getEtudiant().getNom());
+					System.out.println(absence.getEtudiant().getNom());
+					model.setPrenom(absence.getEtudiant().getPrenom());
+					System.out.println(absence.getEtudiant().getPrenom());
+					i++;
+					model.setNum("" + i + "");
+					model.setAbsences(absence.getDate().toString());
+					idTest = absence.getEtudiant().getId();
+				}
+
+			}
+
+			if (model != null) {
+				data.add(model);
+				System.out.println(model.getAbsences() + "   " + model.getNom() + " " + model.getNum());
+
+				tbl.setItems(data);
+				tbl.setVisible(true);
+				// tableabs.setVisible(true);
+
+			} else
+				System.out.println("model still empty man ");
+
+		}
 	}
-	
-	
-	
+
+	public void consulterabsence() throws Exception {
+
+		ImplAbsenceDAO daoAbsence = new ImplAbsenceDAO();
+
+		ObservableList<ModelAbsenceForProf> data = FXCollections.observableArrayList();
+		Integer in = Integer.parseInt(CINText.getText());
+		List<Absence> l = daoAbsence.getAbsenceForResponsable(in, comboMatiere.getValue());
+
+		if (l.size() == 0) {
+			System.out.println(" liste null ");
+		} else {
+			int i = 0;
+			for (Absence absence : l) {
+
+				i++;
+
+				ModelAbsenceForProf m = new ModelAbsenceForProf("" + i + "", absence.getEtudiant().getNom(),
+						absence.getEtudiant().getPrenom(), absence.getDate().toString());
+
+				data.add(m);
+			}
+
+			if (data.size() == 0) {
+				System.out.println("data empty");
+			}
+			System.out.println(data.get(1).getNom());
+
+			tblrespons.setItems(data);
+			tblrespons.refresh();
+
+		}
+
+	}
+
+	public void envoyerMail() {
+
+		ImplAbsenceDAO daoAbsence = new ImplAbsenceDAO();
+		List<MailClass> m = daoAbsence.listmail();
+
+		Properties props = new Properties();
+
+		String SENDERS_EMAIL = "devteach10@gmail.com";
+		String SENDERS_PWD = "Pa$$w0rd2518251.";
+
+		// Set properties required to connect to Gmail's SMTP server
+		props.put("mail.smtp.host", "smtp.gmail.com");
+		props.put("mail.smtp.port", "465 ");
+		props.put("mail.smtp.auth", "true");
+		props.put("mail.smtp.starttls.enable", "true");
+
+		// Create a username-password authenticator to authenticate SMTP session
+		Authenticator authenticator = new Authenticator() {
+			// override the getPasswordAuthentication method
+			protected PasswordAuthentication getPasswordAuthentication() {
+				return new PasswordAuthentication(SENDERS_EMAIL, SENDERS_PWD);
+			}
+		};
+
+		// Create the mail session
+		Session session = Session.getDefaultInstance(props, authenticator);
+		try {
+			// Create a default MimeMessage object.
+			final MimeMessage message = new MimeMessage(session);
+
+			// Set the sender's email address
+			message.setFrom(new InternetAddress(SENDERS_EMAIL));
+
+			// Set recipient's email address
+
+			for (MailClass mailClass : m) {
+
+				message.addRecipient(Message.RecipientType.TO, new InternetAddress(mailClass.getMail()));
+
+				// Set the subject of the email
+				message.setSubject("Hello!");
+
+				// Now set the actual message body of the email
+				message.setText("you are eliminated in this subject :  " + mailClass.getMatiere());
+
+				System.out.println("Sending email...");
+
+				// Send message
+				Transport.send(message);
+
+				System.out.println("Email sent!");
+
+			}
+
+		} catch (Exception e) {
+			System.err.println("Problem sending email. Exception : " + e.getMessage());
+		}
+
+	}
+
 	public void quitterInterface() {
 
 		Stage stage1 = (Stage) btnConsulter.getScene().getWindow();
@@ -247,8 +278,7 @@ public class ResponsableController {
 			e.printStackTrace();
 		}
 		// on peut faire new stage
-		
-		
+
 		Scene scene = new Scene(pane);
 		stage1.setScene(scene);
 		stage1.show();

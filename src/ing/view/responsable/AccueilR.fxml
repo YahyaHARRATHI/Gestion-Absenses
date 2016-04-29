@@ -22,7 +22,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ing.controller.responsable.ResponsableController">
+<VBox prefHeight="400.0" prefWidth="640.0" styleClass="background" stylesheets="@styleR.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ing.controller.responsable.ResponsableController">
 	<children>
 		<MenuBar VBox.vgrow="NEVER">
 			<menus>
@@ -69,14 +69,24 @@
 					<content>
 						<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <AnchorPane prefHeight="346.0" prefWidth="578.0">
+                        <AnchorPane prefHeight="346.0" prefWidth="578.0" styleClass="background" stylesheets="@styleR.css">
                            <children>
                               <VBox layoutX="14.0" prefHeight="346.0" prefWidth="578.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
                                     <HBox spacing="50.0">
                                        <children>
                                           <Label text="Matiere :" />
-                                          <ChoiceBox fx:id="choiceMatiereOngletUn" prefWidth="150.0" />
+                                          <ChoiceBox fx:id="choiceMatiereOngletUn" prefWidth="150.0">
+                                          <items>
+												<FXCollections fx:factory="observableArrayList">
+													<String fx:value="Android" />
+													<String fx:value="Anglais" />
+													<String fx:value="JSF" />
+													<String fx:value="Français" />
+													<String fx:value="Algebre" />
+												</FXCollections>
+											</items>
+                                          </ChoiceBox>
                                        </children>
                                        <padding>
                                           <Insets left="20.0" />
@@ -88,7 +98,16 @@
                                     <HBox spacing="50.0">
                                        <children>
                                           <Label text="Groupe :" />
-                                          <ChoiceBox fx:id="choiceGroupeOngletUn" prefWidth="150.0" />
+                                          <ChoiceBox fx:id="choiceGroupeOngletUn" prefWidth="150.0">
+                                          <items>
+												<FXCollections fx:factory="observableArrayList">
+													<String fx:value="2GLSI2" />
+													<String fx:value="2GLSI1" />
+													<String fx:value="1ING1" />
+
+												</FXCollections>
+											</items>
+                                          </ChoiceBox>
                                        </children>
                                        <padding>
                                           <Insets left="20.0" />
@@ -100,18 +119,39 @@
                                     <HBox>
                                        <children>
                                           <Separator prefHeight="7.0" prefWidth="292.0" visible="false" />
-                                          <Button fx:id="btnConsulterOngletUn" mnemonicParsing="false" onAction="#consulterabsence" text="Consulter" />
+                                          <Button fx:id="btnConsulterOngletUn" mnemonicParsing="false" onAction="#consulterAbsenceongun" text="Consulter" />
                                        </children>
                                     </HBox>
                                     <HBox prefHeight="225.0" prefWidth="578.0">
                                        <children>
-                                          <TableView prefHeight="201.0" prefWidth="579.0">
+                                          <TableView fx:id="tbl" prefHeight="201.0" prefWidth="468.0">
                                             <columns>
-                                              <TableColumn prefWidth="75.0" text="C1" />
-                                              <TableColumn prefWidth="75.0" text="C2" />
+                                              <TableColumn prefWidth="57.0" text="Numero">
+												<cellValueFactory>
+												<PropertyValueFactory property="num" />
+											</cellValueFactory>
+												</TableColumn>
+												<TableColumn prefWidth="114.0" text="Nom">
+												<cellValueFactory>
+												<PropertyValueFactory property="nom" />
+											</cellValueFactory>
+												</TableColumn>
+												<TableColumn prefWidth="117.0" text="Prenom">
+												<cellValueFactory>
+												<PropertyValueFactory property="prenom" />
+											</cellValueFactory>
+												</TableColumn>
+												<TableColumn prefWidth="279.0" text="Absences">
+												<cellValueFactory>
+												<PropertyValueFactory property="absences" />
+											</cellValueFactory>
+												</TableColumn>
                                             </columns>
                                           </TableView>
                                        </children>
+                                       <padding>
+                                          <Insets top="20.0" />
+                                       </padding>
                                     </HBox>
                                  </children>
                               </VBox>
@@ -125,7 +165,7 @@
 				</Tab>
 				<Tab text="Annuler absence">
 					<content>
-						<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+						<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="background" stylesheets="@styleR.css">
 							<children>
 								<Button fx:id="btnConsulter" layoutX="275.0" layoutY="79.0" mnemonicParsing="false" onAction="#consulterabsence" text="Button" />
 								<TextField fx:id="CINText" layoutX="94.0" layoutY="38.0" />
@@ -176,7 +216,7 @@
 				</Tab>
 				<Tab text="Envoyer mail">
 					<content>
-						<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+						<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="background" stylesheets="@styleR.css">
 							<children>
 								<Button layoutX="62.0" layoutY="30.0" mnemonicParsing="false" onAction="#envoyerMail" text="Envoyer les emails d'elimination" />
 							</children>
@@ -187,7 +227,7 @@
 					<content>
 						<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <VBox layoutX="14.0" prefHeight="347.0" prefWidth="640.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <VBox layoutX="14.0" prefHeight="347.0" prefWidth="640.0" styleClass="background" stylesheets="@styleR.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <HBox spacing="50.0">
                                  <children>
